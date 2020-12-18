@@ -26,7 +26,7 @@ object NetMonitor {
         private set
     private var mConnectivityManager: ConnectivityManager? = null
 
-    fun init(application: Application) {
+    private fun init(application: Application) {
         this.mApplication = application
         val handler = NetworkHandler()
         when {
@@ -57,7 +57,7 @@ object NetMonitor {
      */
     fun register(subscriber: Any) {
         if (!isInit) {
-            throw NetMonitorException("register method must be called after init!")
+            init(MonitorApplication.get())
         }
 
         val subscriberClass = subscriber.javaClass
