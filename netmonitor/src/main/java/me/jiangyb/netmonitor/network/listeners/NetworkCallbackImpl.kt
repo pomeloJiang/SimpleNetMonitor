@@ -19,13 +19,11 @@ internal class NetworkCallbackImpl(private val handler: NetworkHandler) :
 
     override fun onAvailable(network: Network) {
         super.onAvailable(network)
-        Log.i("jiangyb", "NetworkCallbackImpl#onAvailable")
         handler.postAvailable(network)
     }
 
     override fun onLinkPropertiesChanged(network: Network, linkProperties: LinkProperties) {
         super.onLinkPropertiesChanged(network, linkProperties)
-        Log.i("jiangyb", "NetworkCallbackImpl#onLinkPropertiesChanged")
         handler.postLinkChanged(network)
     }
 
@@ -36,6 +34,5 @@ internal class NetworkCallbackImpl(private val handler: NetworkHandler) :
 
     override fun onLosing(network: Network, maxMsToLive: Int) {
         super.onLosing(network, maxMsToLive)
-        Log.i("jiangyb", "NetworkCallbackImpl#onLosing")
     }
 }

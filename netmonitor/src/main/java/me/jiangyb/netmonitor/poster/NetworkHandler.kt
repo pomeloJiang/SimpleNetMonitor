@@ -20,7 +20,7 @@ import me.jiangyb.netmonitor.mode.NetworkType
  * @date 2020/12/14
  * @description 处理网络连接回调时的网络类型
  */
-class NetworkHandler {
+internal class NetworkHandler {
     private var cm: ConnectivityManager? = null
 
     init {
@@ -31,11 +31,9 @@ class NetworkHandler {
     fun postAvailable(network: Network) {
         when (getNetType(network)) {
             NetworkType.MOBILE -> {
-                Log.i("jiangyb", "NetworkHandler#NetworkMode.MOBILE_CONNECT")
                 NetworkPoster.post(NetworkMode.MOBILE_CONNECT)
             }
             NetworkType.WIFI -> {
-                Log.i("jiangyb", "NetworkHandler#NetworkMode.WIFI_CONNECT")
                 NetworkPoster.post(NetworkMode.WIFI_CONNECT)
             }
             NetworkType.NONE -> {
@@ -52,15 +50,12 @@ class NetworkHandler {
         when {
             !isNetworkAvailable(network) -> {
                 NetworkPoster.post(NetworkMode.NONE)
-                Log.i("jiangyb", "网络断连");
             }
             networkType == NetworkType.MOBILE -> {
                 NetworkPoster.post(NetworkMode.MOBILE_DISCONNECT)
-                Log.i("jiangyb", "postLost#MOBILE_DISCONNECT");
             }
             networkType == NetworkType.WIFI -> {
                 NetworkPoster.post(NetworkMode.WIFI_DISCONNECT)
-                Log.i("jiangyb", "postLost#WIFI_DISCONNECT");
             }
         }
     }

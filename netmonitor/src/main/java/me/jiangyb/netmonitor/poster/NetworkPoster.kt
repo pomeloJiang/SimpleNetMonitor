@@ -14,7 +14,7 @@ import java.util.*
  * @date 2020/12/11
  * @description 网络变化推送工具类
  */
-object NetworkPoster {
+internal object NetworkPoster {
     private val subscriptions = LinkedList<Subscription>()
     private var isPosting: Boolean = false
     private val mainThreadHandler = Handler(Looper.getMainLooper())
@@ -35,7 +35,7 @@ object NetworkPoster {
         }
     }
 
-    internal fun registerSubscription(subscription: Subscription) {
+    fun registerSubscription(subscription: Subscription) {
         if (!isPosting) {
             subscriptions.add(subscription)
         } else {

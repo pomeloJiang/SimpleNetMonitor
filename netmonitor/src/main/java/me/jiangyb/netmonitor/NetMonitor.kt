@@ -35,7 +35,6 @@ object NetMonitor {
                     application.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
                 val networkBuilder = NetworkRequest.Builder();
                 NETWORK_TRANSPORTS.forEach {
-                    Log.i("jiangyb", "NETWORK_TRANSPORTS = " + it);
                     networkBuilder.addTransportType(it)
                 }
                 val networkRequest = networkBuilder.build()
@@ -60,7 +59,7 @@ object NetMonitor {
         if (!isInit) {
             throw NetMonitorException("register method must be called after init!")
         }
-        //TODO 根据订阅的网络类型分类
+
         val subscriberClass = subscriber.javaClass
         val subscriberMethods =
             SubscriberMethodCollector.get().findSubscribeMethods(subscriberClass)
