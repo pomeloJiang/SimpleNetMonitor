@@ -1,0 +1,3 @@
+include ':netmonitor'
+include ':app'
+rootProject.name = "SimpleNetMonitor"
