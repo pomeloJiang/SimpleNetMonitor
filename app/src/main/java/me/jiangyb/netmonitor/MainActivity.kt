@@ -1,10 +1,8 @@
 package me.jiangyb.netmonitor
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import kotlinx.android.synthetic.main.activity_main.*
 import me.jiangyb.netmonitor.annotations.NetworkSubscribe
 import me.jiangyb.netmonitor.mode.NetworkMode
 
@@ -13,10 +11,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         NetMonitor.register(this)
-        second_activity.setOnClickListener {
-            val intent = Intent(this@MainActivity, SecondActivity::class.java)
-            this@MainActivity.startActivity(intent)
-        }
     }
 
     @NetworkSubscribe(NetworkMode.MOBILE_CONNECT)
@@ -29,14 +23,14 @@ class MainActivity : AppCompatActivity() {
         Log.i("MainActivity", "onNetworkChanged1 mode=${mode}");
     }
 
-    @NetworkSubscribe(NetworkMode.WIFI_CONNECT, NetworkMode.WIFI_DISCONNECT)
+    @NetworkSubscribe(NetworkMode.MOBILE_CONNECT, NetworkMode.MOBILE_DISCONNECT)
     fun onNetworkChanged2(mode: NetworkMode) {
         Log.i("MainActivity", "onNetworkChanged2 mode=${mode}");
     }
 
     @NetworkSubscribe(NetworkMode.NONE)
     fun onNetworkChanged3(mode: NetworkMode) {
-        Log.i("jiangyb","onNetworkChanged3 mode=${mode}")
+        Log.i("MainActivity", "onNetworkChanged3 mode=${mode}")
     }
 
     override fun onDestroy() {
